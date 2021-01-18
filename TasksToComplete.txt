@@ -1,4 +1,5 @@
 Order Food
+
    1.) FIFO Principle
       a.) Queue Or LinkedList
    2.) Items
@@ -18,3 +19,5 @@ Consist of multiple classes to manage customers and foods
 
 Able to store updated list menus and access them effiecently 
 
+=======
+  //Needs editing
