@@ -3,5 +3,6 @@ public class tinyCooked{
         System.out.print("hellow, world");
         //tip
         //no u tip
+        //gg
     }
 }
