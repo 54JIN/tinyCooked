@@ -11,3 +11,10 @@ Order Food
       c.)phone number
       d.)gender
    5.) Deals
+=======
+by using queues and linked list to process the order
+
+Consist of multiple classes to manage customers and foods
+
+Able to store updated list menus and access them effiecently 
+
