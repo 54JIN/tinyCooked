@@ -6,4 +6,8 @@ Order Food
       b.) Drinks
       c.) Condemends
    4.) Customer Information
+      a.)Name
+      b.)Address
+      c.)phone number
+      d.)gender
    5.) Deals
