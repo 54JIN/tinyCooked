@@ -1,1 +1,9 @@
 Order Food
+   1.) FIFO Principle
+      a.) Queue Or LinkedList
+   2.) Items
+      a.) Food
+      b.) Drinks
+      c.) Condemends
+   4.) Customer Information
+   5.) Deals
