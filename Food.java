@@ -54,8 +54,12 @@ public class Food{
             throw new RuntimeException("No Food In data base");
             //return false;
         }
-        if(head.foodName.equals(foodName)){
+        if(head.foodName.equals(foodName) && head.previous == null){
             head = null;
+            return true;
+        }
+        else if(head.foodName.equals(foodName)){
+            head = head.previous;
             return true;
         }
         else{
@@ -239,11 +243,11 @@ public class Food{
         temp.addFood("hamburger", 4.00);
         temp.addFood("ham",1.00);
         temp.addFood("pizza slice", 1.00);
-        temp.removeFood("ham");
-        temp.removeFood("hamburger");
+        temp.removeFood("pizza slice");
+        //temp.removeFood("hamburger");
         //temp.removeFood("pizza slice");
-
-        System.out.println(temp.foodExist("pizza slice"));
+        System.out.println(temp.head.foodName);
+        System.out.println(temp.foodExist("hamburger"));
         /*
         System.out.println(temp.getPrice("hamburger"));
         System.out.println(temp.getPrice("pizza slice"));
