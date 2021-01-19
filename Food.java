@@ -27,7 +27,7 @@ public class Food{
         this.calories = calories;
     }
     //add a food item without calories being declared
-    public void add(String foodName, double price){
+    public void addFood(String foodName, double price){
         Food tempFood = new Food(foodName, price);
         if(head == null){
             head = tempFood;
@@ -38,7 +38,7 @@ public class Food{
         }
     }
     //add a food item with calories attached 
-    public void add(String foodName, double price, int calories){
+    public void addFood(String foodName, double price, int calories){
         Food tempFood = new Food(foodName, price, calories);
         if(head == null){
             head = tempFood;
@@ -134,6 +134,38 @@ public class Food{
             }
         }
     }
+    //change the price of an food item already containg a price value
+    //After setting the price return true as a singal that the price data within the food has been changed other wise return false as a signal to state that it has not been changed
+    public boolean setPrice(String foodName, int price){
+        //If the food list is empty then throw an error message stopping the entire terminal (Later Fix to System.out.println or just return false rather than stopping the terminal)
+        if(head == null){
+            throw new RuntimeException("No Food In data base");
+        }
+        else{
+            //the cursor copies the address, the memory location, of the head Food Class
+            Food cursor = head;
+            //Search through the entire list untill either the foodName matches the given foodName or if the nodes previous is empty.
+            while(cursor.previous != null){
+                if(cursor.foodName.equals(foodName)){
+                    cursor.price = price;
+                    return true;
+                }
+                else{
+                    cursor = cursor.previous;
+                }
+            }
+            //this is to check the last food within the list
+            if(cursor.foodName.equals(foodName)){
+                cursor.price = price;
+                return true;
+            }
+            //if the food item is not within the list return false
+            else{
+                return false;
+            }
+        }
+    }
+    //Check if the food item exists within the list already or exists at all within the list
     public boolean foodExist(String foodName){
         //If the food list is empty then throw an error message stopping the entire terminal (Later Fix to System.out.println or just return false rather than stopping the terminal)
         if(head == null){
@@ -164,13 +196,15 @@ public class Food{
     public static void main(String[] args){
         System.out.println("Hi");
         Food temp = new Food();
-        temp.add("hamburger", 4.00);
-        temp.add("pizza slice", 1.00);
+        temp.addFood("hamburger", 4.00);
+        temp.addFood("pizza slice", 1.00);
         System.out.println(temp.getPrice("hamburger"));
         System.out.println(temp.getPrice("pizza slice"));
         System.out.println(temp.getCalories("pizza slice"));
         System.out.println(temp.foodExist("pizza slice"));
         System.out.println(temp.setCalories("pizza slice",140));
         System.out.println(temp.getCalories("pizza slice"));
+        System.out.println(temp.setPrice("pizza slice", 2));
+        System.out.println(temp.getPrice("pizza slice"));
     }
 }
