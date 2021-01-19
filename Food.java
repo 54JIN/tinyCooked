@@ -16,6 +16,8 @@ public class Food{
         this.previous = null;
         this.foodName = foodName;
         this.price = price;
+        //the calories is set to -1 due to the calories not being established, yet. This is done for the purpose of getCalories Method.
+        this.calories = -1;
     }
     //Declares a Food class with calories already declared.
     public Food(String foodName, double price, int calories){
@@ -46,7 +48,7 @@ public class Food{
             head = tempFood;
         }
     }
-    //get the price of the food item if it exists other wise return -1;
+    //get the price of the food item if it exists other wise return -1
     public double getPrice(String foodName){
         //If the food list is empty then throw an error message stopping the entire terminal (Later Fix to System.out.println or just return -1 rather than stopping the terminal)
         if(head == null){
@@ -57,7 +59,7 @@ public class Food{
             Food cursor = head;
             //Search through the entire list untill either the foodName matches the given foodName or if the nodes previous is empty.
             while(cursor.previous != null){
-                if(cursor.foodName == foodName){
+                if(cursor.foodName.equals(foodName)){
                     return cursor.price;
                 }
                 else{
@@ -65,7 +67,7 @@ public class Food{
                 }
             }
             //this is to check the last food within the list
-            if(cursor.foodName == foodName){
+            if(cursor.foodName.equals(foodName)){
                 return cursor.price;
             }
             //if the food item is not within the list return -1
@@ -74,7 +76,91 @@ public class Food{
             }
         }
     }
-
+    public int getCalories(String foodName){
+        //If the food list is empty then throw an error message stopping the entire terminal (Later Fix to System.out.println or just return -1 rather than stopping the terminal)
+        if(head == null){
+            throw new RuntimeException("No Food In data base");
+        }
+        else{
+            //the cursor copies the address, the memory location, of the head Food Class
+            Food cursor = head;
+            //Search through the entire list untill either the foodName matches the given foodName or if the nodes previous is empty.
+            while(cursor.previous != null){
+                if(cursor.foodName.equals(foodName)){
+                    return cursor.calories;
+                }
+                else{
+                    cursor = cursor.previous;
+                }
+            }
+            //this is to check the last food within the list
+            if(cursor.foodName.equals(foodName)){
+                return cursor.calories;
+            }
+            //if the food item is not within the list return -1
+            else{
+                return -1;
+            }
+        }
+    }
+    //set calories to an item without calories initialized already or change the calories of an food item already containg a calorie value
+    //After setting the calories return true as a singal that the calorie data within the food has been changed other wise return false as a signal to state that it has not been changed
+    public boolean setCalories(String foodName, int calories){
+        //If the food list is empty then throw an error message stopping the entire terminal (Later Fix to System.out.println or just return false rather than stopping the terminal)
+        if(head == null){
+            throw new RuntimeException("No Food In data base");
+        }
+        else{
+            //the cursor copies the address, the memory location, of the head Food Class
+            Food cursor = head;
+            //Search through the entire list untill either the foodName matches the given foodName or if the nodes previous is empty.
+            while(cursor.previous != null){
+                if(cursor.foodName.equals(foodName)){
+                    cursor.calories = calories;
+                    return true;
+                }
+                else{
+                    cursor = cursor.previous;
+                }
+            }
+            //this is to check the last food within the list
+            if(cursor.foodName.equals(foodName)){
+                cursor.calories = calories;
+                return true;
+            }
+            //if the food item is not within the list return false
+            else{
+                return false;
+            }
+        }
+    }
+    public boolean foodExist(String foodName){
+        //If the food list is empty then throw an error message stopping the entire terminal (Later Fix to System.out.println or just return false rather than stopping the terminal)
+        if(head == null){
+            throw new RuntimeException("No Food In data base");
+        }
+        else{
+            //the cursor copies the address, the memory location, of the head Food Class
+            Food cursor = head;
+            //Search through the entire list until either the foodName matches the given foodName or if the nodes previous is empty.
+            while(cursor.previous != null){
+                if(cursor.foodName.equals(foodName)){
+                    return true;
+                }
+                else{
+                    cursor = cursor.previous;
+                }
+            }
+            //this is to check the last food within the list
+            if(cursor.foodName.equals(foodName)){
+                return true;
+            }
+            //if the food item is not within the list return false
+            else{
+                return false;
+            }
+        }
+    }
     public static void main(String[] args){
         System.out.println("Hi");
         Food temp = new Food();
@@ -82,5 +168,9 @@ public class Food{
         temp.add("pizza slice", 1.00);
         System.out.println(temp.getPrice("hamburger"));
         System.out.println(temp.getPrice("pizza slice"));
+        System.out.println(temp.getCalories("pizza slice"));
+        System.out.println(temp.foodExist("pizza slice"));
+        System.out.println(temp.setCalories("pizza slice",140));
+        System.out.println(temp.getCalories("pizza slice"));
     }
 }
