@@ -54,17 +54,17 @@ public class Food{
             throw new RuntimeException("No Food In data base");
             //return false;
         }
+        if(head.foodName.equals(foodName)){
+            head = null;
+            return true;
+        }
         else{
             //the cursor copies the address, the memory location, of the head Food Class
             Food cursor = head;
             //Search through the entire list untill either the foodName matches the given foodName or if the nodes previous is empty.
             while(cursor.previous != null){
-                if(cursor.foodName.equals(head.foodName)){
-                    head = cursor.previous;
-                    return true;
-                }
-                else if(cursor.foodName.equals(foodName)){
-                    cursor = cursor.previous;
+                if(cursor.previous.foodName.equals(foodName)){
+                    cursor.previous = cursor.previous.previous;
                     return true;
                 }
                 else{
@@ -72,12 +72,7 @@ public class Food{
                 }
             }
             //this is to check the last food within the list
-            if(cursor.foodName.equals(head.foodName) && cursor.previous == null){
-                //Food tempFood = new Food();
-                head = null;
-                return true;
-            }
-            else if(cursor.foodName.equals(foodName)){
+            if(cursor.foodName.equals(foodName)){
                 Food temp = new Food();
                 cursor = temp;
                 return true;
@@ -242,7 +237,14 @@ public class Food{
         System.out.println("Hi");
         Food temp = new Food();
         temp.addFood("hamburger", 4.00);
+        temp.addFood("ham",1.00);
         temp.addFood("pizza slice", 1.00);
+        temp.removeFood("ham");
+        temp.removeFood("hamburger");
+        //temp.removeFood("pizza slice");
+
+        System.out.println(temp.foodExist("pizza slice"));
+        /*
         System.out.println(temp.getPrice("hamburger"));
         System.out.println(temp.getPrice("pizza slice"));
         System.out.println(temp.getCalories("pizza slice"));
@@ -255,5 +257,6 @@ public class Food{
         System.out.println(temp.foodExist("pizza slice"));
         System.out.println(temp.removeFood("hamburger"));
         System.out.println(temp.foodExist("hamburger"));
+        */
     }
 }
