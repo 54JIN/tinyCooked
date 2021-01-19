@@ -48,11 +48,47 @@ public class Food{
             head = tempFood;
         }
     }
+    public boolean removeFood(String foodName){
+        //If the food list is empty then throw an error message stopping the entire terminal (Later Fix to System.out.println or just return false rather than stopping the terminal)
+        if(head == null){
+            throw new RuntimeException("No Food In data base");
+            //return false;
+        }
+        else{
+            //the cursor copies the address, the memory location, of the head Food Class
+            Food cursor = head;
+            //Search through the entire list untill either the foodName matches the given foodName or if the nodes previous is empty.
+            while(cursor.previous != null){
+                if(cursor.foodName.equals(head.foodName)){
+                    head = head.previous;
+                    return true;
+                }
+                else if(cursor.foodName.equals(foodName)){
+                    cursor = cursor.previous;
+                    return true;
+                }
+                else{
+                    cursor = cursor.previous;
+                }
+            }
+            //this is to check the last food within the list
+            if(cursor.foodName.equals(foodName)){
+                Food temp = new Food();
+                cursor = temp;
+                return true;
+            }
+            //if the food item is not within the list return false
+            else{
+                return false;
+            }
+        }
+    }
     //get the price of the food item if it exists other wise return -1
     public double getPrice(String foodName){
         //If the food list is empty then throw an error message stopping the entire terminal (Later Fix to System.out.println or just return -1 rather than stopping the terminal)
         if(head == null){
             throw new RuntimeException("No Food In data base");
+            //return -1;
         }
         else{
             //the cursor copies the address, the memory location, of the head Food Class
@@ -80,6 +116,7 @@ public class Food{
         //If the food list is empty then throw an error message stopping the entire terminal (Later Fix to System.out.println or just return -1 rather than stopping the terminal)
         if(head == null){
             throw new RuntimeException("No Food In data base");
+            //return -1;
         }
         else{
             //the cursor copies the address, the memory location, of the head Food Class
@@ -109,6 +146,7 @@ public class Food{
         //If the food list is empty then throw an error message stopping the entire terminal (Later Fix to System.out.println or just return false rather than stopping the terminal)
         if(head == null){
             throw new RuntimeException("No Food In data base");
+            //return false;
         }
         else{
             //the cursor copies the address, the memory location, of the head Food Class
@@ -140,6 +178,7 @@ public class Food{
         //If the food list is empty then throw an error message stopping the entire terminal (Later Fix to System.out.println or just return false rather than stopping the terminal)
         if(head == null){
             throw new RuntimeException("No Food In data base");
+            //return false;
         }
         else{
             //the cursor copies the address, the memory location, of the head Food Class
@@ -170,6 +209,7 @@ public class Food{
         //If the food list is empty then throw an error message stopping the entire terminal (Later Fix to System.out.println or just return false rather than stopping the terminal)
         if(head == null){
             throw new RuntimeException("No Food In data base");
+            //return false;
         }
         else{
             //the cursor copies the address, the memory location, of the head Food Class
@@ -206,5 +246,7 @@ public class Food{
         System.out.println(temp.getCalories("pizza slice"));
         System.out.println(temp.setPrice("pizza slice", 2));
         System.out.println(temp.getPrice("pizza slice"));
+        System.out.println(temp.removeFood("pizza slice"));
+        System.out.println(temp.foodExist("hamburger"));
     }
 }
